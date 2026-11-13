@@ -2,7 +2,7 @@
 
 A model from [Event Neutral](https://eventneutral.com): what will the FOMC decide on Dec 9, 2026? Built around Kalshi's `KXFEDDECISION-26DEC` market.
 
-- `index.html`: the Question page (published at eventneutral.com/fed-december-model/ through the `event-neutral-site` repo; copy changed pages there and push to update). `rules/`: the market's rules.
+- `index.html`: the Question page (served at fed-december-model.eventneutral.com; pushing `main` publishes). `rules/`: the market's rules.
 - `model/`: the interactive Model page. `model/model.js` holds the maths: base rate, Fed signal, unemployment, crisis tail, judgment.
 - `model/inputs.json`: the forecast's inputs and the historical counts behind them. Edit inputs here only.
 - The look shared by Event Neutral pages (styles, light/dark switch, D3, sliders) is loaded from `https://eventneutral.com/kit/v1/`. Its source is in the `event-neutral-site` repository.
