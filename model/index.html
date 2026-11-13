@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model · What will the Fed decide on December 9? · Event Neutral</title>
+<link rel="stylesheet" href="https://eventneutral.com/kit/v1/kit.css?v=3">
+<script src="https://eventneutral.com/kit/v1/theme.js"></script>
+<style>
+  #forecast { max-width: 640px; margin: 14px 0 4px; }
+  #layers { max-width: 760px; margin: 14px 0 4px; }
+  .legend { font-size: 14.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  table.t { border-collapse: collapse; margin: 10px 0 18px; font-variant-numeric: tabular-nums; }
+  table.t th { text-align: left; font-size: 14.5px; color: var(--ink-faint); font-weight: 400; padding: 0 14px 6px 0; border-bottom: 1px solid var(--line); }
+  table.t td { padding: 6px 14px 6px 0; }
+  table.t td.n { text-align: right; }
+  .inputs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 40px 0 6px; }
+  .inputs-head h2 { margin: 0; }
+  .group { border-top: 1px solid var(--line); padding: 18px 0 6px; }
+  .group > .note { font-size: 15.5px; color: var(--ink-soft); margin: 2px 0 10px; }
+  .field { display: grid; grid-template-columns: minmax(0, 1fr) minmax(140px, 260px) 110px; column-gap: 20px; align-items: center; padding: 10px 0 12px; }
+  .field .name { line-height: 1.3; font-weight: 600; }
+  .field .en-seg { grid-column: 2 / 4; justify-self: start; }
+  .field .note { grid-column: 1 / -1; font-size: 15.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  .field .en-num input { width: 68px; }
+  .warn { color: var(--s3); font-size: 15.5px; }
+  .end { margin-top: 44px; }
+  .end dl { margin: 0 0 16px 20px; }
+  .end dt { font-weight: 600; margin-top: 12px; }
+  .end dd { margin: 2px 0 0; color: var(--ink-soft); max-width: 66ch; }
+  .end ul { margin-left: 20px; }
+  .end blockquote { margin: 6px 0 10px; padding-left: 14px; border-left: 2px solid var(--line); color: var(--ink-soft); max-width: 64ch; }
+  @media (max-width: 640px) {
+    .field { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+    .field .name { grid-column: 1 / -1; }
+    .field .en-seg { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap wide bar-inner">
+    <a class="brand" href="https://eventneutral.com/">Event&nbsp;Neutral</a>
+    <nav class="nav">
+      <a href="https://eventneutral.com/">Home</a>
+      <a href="https://eventneutral.com/about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap wide">
+    <div class="kicker">Started 2026-11-13</div>
+    <h1>What will the Fed decide on December 9?</h1>
+    <nav class="wiki"><a href="../">Question</a> <a href="./" aria-current="page">Model</a></nav>
+    <p class="src"><a href="https://github.com/jmfinnegan12/fed-december-model">GitHub</a> · <a href="https://github.com/jmfinnegan12/fed-december-model/issues/new">suggest a change</a> · <a href="https://github.com/jmfinnegan12/fed-december-model/blob/main/CONTRIBUTING.md">how to contribute</a></p>
+
+    <h2>Base rate</h2>
+    <p class="measure">Since 1994 the Fed has been in today's position 20 times: a hold, one meeting after a hike. Next it held 8 times, hiked 25bp 9 times and more than 25bp 3 times; it never cut.<sup class="fn"><a href="#s1">1</a></sup> The model adjusts from there for what the Fed has signaled, what has happened since the last meeting, and the chance of a crisis.</p>
+    <div class="en-chart" id="layers"></div>
+
+    <h2>The forecast</h2>
+    <div class="en-chart" id="forecast"></div>
+    <p class="legend" id="legend" hidden>Dashed lines: the 2026-11-13 values.</p>
+    <table class="t">
+      <thead><tr><th>Date</th><th>Cut &gt;25</th><th>Cut 25</th><th>Hold</th><th>Hike 25</th><th>Hike &gt;25</th></tr></thead>
+      <tbody>
+        <tr><td>2026-11-13</td><td class="n">0.3%</td><td class="n">0.2%</td><td class="n">3.5%</td><td class="n">88.0%</td><td class="n">8.0%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="inputs-head">
+      <h2>Inputs</h2>
+      <button class="en-btn" id="reset" type="button">Reset</button>
+    </div>
+    <div id="inputs"></div>
+
+    <div class="end">
+      <details class="en-q">
+        <summary>Why these numbers</summary>
+        <dl>
+          <dt>Base rate: 20 meetings</dt>
+          <dd>Meetings after a hold whose last move was a hike, one hold since. After longer pauses the Fed mostly held again, and every cut came after four holds or more.<sup class="fn"><a href="#s1">1</a></sup></dd>
+          <dt>Fed signal: tightening</dt>
+          <dd>A tightening signal in the minutes or statement came before 40 of 44 hikes and 34 of 148 holds since 1999.<sup class="fn"><a href="#s2">2</a></sup> The October statement gives no direction and its minutes are due Nov 18;<sup class="fn"><a href="#s5">5</a></sup> voters' speeches since then lean toward a hike.<sup class="fn"><a href="#s7">7</a>,<a href="#s8">8</a></sup></dd>
+          <dt>Unemployment: flat</dt>
+          <dd>4.1% in October, down 0.1 point.<sup class="fn"><a href="#s3">3</a></sup> Flat unemployment came before 76% of hikes and 58% of holds. Inflation, payrolls and financial conditions did not improve the historical test and are left out.</dd>
+          <dt>Crisis tail: 1.3%</dt>
+          <dd>About 6 crises in 33 years; 9 moves between meetings, 8 of them cuts.<sup class="fn"><a href="#s4">4</a></sup></dd>
+          <dt>Hold: 3.5%, 28% of the model's 12.4%</dt>
+          <dd><blockquote>Given the hold at the last meeting, the lean of a wide majority of voters toward a hike, and the end of year projections, this needs to be revised down substantially.</blockquote>The September projections' median put the end-2026 rate one hike above today's range.<sup class="fn"><a href="#s6">6</a></sup></dd>
+          <dt>Hike &gt;25bp: 8%, down from the model's 22.1%</dt>
+          <dd><blockquote>None of the conditions are in place to warrant a 50 basis point hike. Nobody aside from one partial mention is calling for it. The historical precedent is that the conditions need to be firmly in place. Urgency. And we're not seeing that right now.</blockquote>The partial mention is Waller's: 50bp "should be considered" if October core CPI ran around 0.3%;<sup class="fn"><a href="#s7">7</a></sup> it did.<sup class="fn"><a href="#s9">9</a></sup></dd>
+        </dl>
+      </details>
+      <details class="en-q">
+        <summary>Weak points</summary>
+        <ul>
+          <li>The base rate rests on 20 meetings, and its 3 large hikes are all from 1994-95.</li>
+          <li>The signal labels are one reader's judgment; today's rests on speeches until the minutes are out.</li>
+          <li>The layers overlap but are combined as separate evidence, which can overstate confidence.</li>
+          <li>The Warsh Fed gives no forward guidance and has four meetings of history.</li>
+        </ul>
+      </details>
+      <details class="en-q">
+        <summary>What would change the forecast</summary>
+        <ul>
+          <li><strong>Nov 18:</strong> October minutes: how many expect a December hike; any mention of a larger one.</li>
+          <li><strong>Nov 25:</strong> October PCE.</li>
+          <li><strong>Dec 4:</strong> November jobs report.</li>
+          <li><strong>To Nov 27:</strong> voters' speeches. The blackout runs Nov 28 to Dec 10.<sup class="fn"><a href="#s10">10</a></sup></li>
+        </ul>
+      </details>
+      <details class="en-q">
+        <summary>Update log</summary>
+        <ul>
+          <li>2026-11-13 · Model set: base rate, Fed signal (tightening), unemployment (flat), crisis tail 1.3%; judgment Hold 3.5%, Hike &gt;25bp 8%.</li>
+        </ul>
+      </details>
+      <details class="en-q">
+        <summary>Something missing? Suggest an improvement</summary>
+        <p class="measure"><a href="https://github.com/jmfinnegan12/fed-december-model/issues/new">Suggest a change</a> on GitHub, or copy the <a href="https://github.com/jmfinnegan12/fed-december-model">repository</a> and send your version (<a href="https://github.com/jmfinnegan12/fed-december-model/blob/main/CONTRIBUTING.md">how to contribute</a>).</p>
+      </details>
+    </div>
+
+    <h2 id="sources">Sources</h2>
+    <ol class="sources">
+      <li id="s1"><a href="https://fred.stlouisfed.org/series/DFEDTARU">FRED. Federal funds target range, upper limit (DFEDTARU), and target rate (DFEDTAR)</a>; meeting dates from the <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">FOMC calendars</a>.</li>
+      <li id="s2"><a href="https://www.federalreserve.gov/monetarypolicy/fomc_historical.htm">Federal Reserve. FOMC statements and minutes, 1999-2026.</a></li>
+      <li id="s3"><a href="https://www.bls.gov/news.release/empsit.nr0.htm">BLS. The Employment Situation, October 2026</a>; earlier values as first published, from <a href="https://alfred.stlouisfed.org/series?seid=UNRATE">ALFRED</a>.</li>
+      <li id="s4"><a href="https://www.federalreserve.gov/monetarypolicy/fomchistorical2020.htm">Federal Reserve. FOMC historical materials</a>, and the press release for each move between meetings.</li>
+      <li id="s5"><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">Federal Reserve. FOMC statement, 2026-10-28.</a></li>
+      <li id="s6"><a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve. Summary of Economic Projections, 2026-09-16.</a></li>
+      <li id="s7"><a href="https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm">Waller, 2026-11-10. The Economic Outlook and Some Thoughts on Labor Market Dynamism.</a></li>
+      <li id="s8"><a href="https://www.dallasfed.org/news/speeches/logan/2026/lkl261110">Logan, 2026-11-10. Economic and monetary policy outlook.</a></li>
+      <li id="s9"><a href="https://www.bls.gov/news.release/cpi.nr0.htm">BLS. Consumer Price Index, October 2026.</a></li>
+      <li id="s10"><a href="https://www.federalreserve.gov/monetarypolicy/files/FOMC_ExtCommunicationParticipants.pdf">FOMC. Policy on External Communications of Committee Participants, para. 7.</a></li>
+    </ol>
+
+    <p class="muted" style="margin-top:28px">Last updated 2026-11-13</p>
+    <p class="muted">Nothing here is financial advice or a recommendation to trade.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap wide foot-inner">© 2026 Temerity Ventures LLC · <a href="mailto:info@eventneutral.com">Contact</a></div>
+</footer>
+
+<script src="https://eventneutral.com/kit/v1/vendor/d3.v7.min.js"></script>
+<script src="https://eventneutral.com/kit/v1/kit.js?v=2"></script>
+<script src="model.js?v=2"></script>
+<script src="page.js?v=2"></script>
+</body>
+</html>

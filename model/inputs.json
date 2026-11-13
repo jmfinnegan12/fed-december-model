@@ -1,0 +1,37 @@
+{
+  "_about": "The forecast's inputs. The Model page (model/model.js) reads this file; edit here only. Counts come from scheduled FOMC meetings 1994-2026 (code/ in the research folder). Probabilities are 0-1.",
+  "as_of": "2026-11-13",
+  "outcomes": ["Cut >25bp", "Cut 25bp", "Hold", "Hike 25bp", "Hike >25bp"],
+  "direction": ["Down", "Down", "Hold", "Up", "Up"],
+  "base": {
+    "state": "Hold, last move a hike, one hold since",
+    "counts": [0, 0, 8, 9, 3],
+    "add_per_outcome": 0.1
+  },
+  "signal": {
+    "note": "Bias toward the next meeting in the minutes (or the statement if minutes are not out; voters' speeches if both read neutral, from June 2026). Counts: meetings 1999-2026 by the next meeting's direction.",
+    "counts": {
+      "Up":   {"tightening": 40, "neutral": 4,   "easing": 0},
+      "Hold": {"tightening": 34, "neutral": 105, "easing": 9},
+      "Down": {"tightening": 0,  "neutral": 9,   "easing": 18}
+    },
+    "today": "tightening"
+  },
+  "unemployment": {
+    "note": "Change in the unemployment rate between meetings: up = +0.2pt or more, down = -0.2pt or more, else flat. Counts: intervals 1994-2026 by the next meeting's direction.",
+    "counts": {
+      "Up":   {"up": 2,  "flat": 38,  "down": 10},
+      "Hold": {"up": 29, "flat": 103, "down": 47},
+      "Down": {"up": 9,  "flat": 21,  "down": 2}
+    },
+    "today": "flat"
+  },
+  "tail": {
+    "p": 0.013,
+    "if_crisis_while_hiking": [0.20, 0.13, 0.43, 0.23, 0.01]
+  },
+  "judgment": {
+    "hold": 0.035,
+    "hike_over_25": 0.08
+  }
+}
